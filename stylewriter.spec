@@ -1,15 +1,15 @@
 Summary:	Non-MacOS StyleWriter driver
 Name:		stylewriter
 Version:	0.9.9
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	GPL
 Group:		System/Printing
 URL:		http://homepage.mac.com/monroe/styl/
 Source:		http://homepage.mac.com/monroe/styl/stylewriter.tar.gz
 Patch0:		stylewriter-gcc4.patch
 #BuildRequires:	netatalk-devel
-Conflicts:	printer-utils-2006 printer-utils-2007
-Conflicts:	printer-filters-2006 printer-filters-2007
+Conflicts:	printer-utils = 2007
+Conflicts:	printer-filters = 2007
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
