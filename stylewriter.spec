@@ -1,7 +1,7 @@
 Summary:	Non-MacOS StyleWriter driver
 Name:		stylewriter
 Version:	0.9.9
-Release:	%mkrel 6
+Release:	%mkrel 7
 License:	GPL
 Group:		System/Printing
 URL:		http://homepage.mac.com/monroe/styl/
@@ -22,7 +22,7 @@ This is a driver for certain types of Apple StyleWriter printers.
 
 %build
 
-gcc %{optflags} -o lpstyl lpstyl.c
+gcc %{optflags} %{ldflags} -o lpstyl lpstyl.c
 
 # it will not build...
 #gcc %{optflags} -DATALK=1 lpstyl.c adsp.c -o lpstyl-atalk -latalk
