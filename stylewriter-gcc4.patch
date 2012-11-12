@@ -1,0 +1,64 @@
+--- lpstyl.c.orig	2000-08-27 20:52:32.000000000 +0200
++++ lpstyl.c	2005-08-04 22:43:45.000000000 +0200
+@@ -259,8 +259,8 @@
+ void cleanup();
+ void usage(void);
+ int readFileHeader(void);
+-size_t readFileScanline(char *bufK, char *bufC, char *bufM, char *bufY);
+-size_t appendEncode(size_t length, char *in, char *last, char *out);
++size_t readFileScanline(unsigned char *bufK, unsigned char *bufC, unsigned char *bufM, unsigned char *bufY);
++size_t appendEncode(size_t length, unsigned char *in, unsigned char *last, unsigned char *out);
+ 
+ /* Variables printStdin() needs which can also be set by arguments */
+ long height = -1, width = -1;
+@@ -939,7 +939,7 @@
+ }
+ 
+ 
+-size_t readFileScanline(char *bufK, char *bufC, char *bufM, char *bufY)
++size_t readFileScanline(unsigned char *bufK, unsigned char *bufC, unsigned char *bufM, unsigned char *bufY)
+ {
+ 	static char *inputBuf = nil;
+ 	static size_t inputSize = 0;
+@@ -1037,10 +1037,10 @@
+ 					if((i & 0x03) == 0)
+ 					{
+ 						/* write the output */
+-						*((unsigned char *)bufK)++ = cmyk & 0x000000FF;		cmyk >>= 8;
+-						*((unsigned char *)bufY)++ = cmyk & 0x000000FF;		cmyk >>= 8;
+-						*((unsigned char *)bufM)++ = cmyk & 0x000000FF;		cmyk >>= 8;
+-						*((unsigned char *)bufC)++ = cmyk & 0x000000FF;
++						*(bufK)++ = cmyk & 0x000000FF;		cmyk >>= 8;
++						*(bufY)++ = cmyk & 0x000000FF;		cmyk >>= 8;
++						*(bufM)++ = cmyk & 0x000000FF;		cmyk >>= 8;
++						*(bufC)++ = cmyk & 0x000000FF;
+ 						cmyk = 0;
+ 					}
+ 				}
+@@ -1053,10 +1053,10 @@
+ 				}
+ 				
+ 				/* write the final part */
+-				*((unsigned char *)bufK)++ = cmyk & 0x000000FF;		cmyk >>= 8;
+-				*((unsigned char *)bufY)++ = cmyk & 0x000000FF;		cmyk >>= 8;
+-				*((unsigned char *)bufM)++ = cmyk & 0x000000FF;		cmyk >>= 8;
+-				*((unsigned char *)bufC)++ = cmyk & 0x000000FF;
++				*(bufK)++ = cmyk & 0x000000FF;		cmyk >>= 8;
++				*(bufY)++ = cmyk & 0x000000FF;		cmyk >>= 8;
++				*(bufM)++ = cmyk & 0x000000FF;		cmyk >>= 8;
++				*(bufC)++ = cmyk & 0x000000FF;
+ 			}
+ 			else
+ 			{
+@@ -1100,9 +1100,9 @@
+ 	return(result);
+ }
+ 
+-size_t appendEncode(size_t length, char *in, char *last, char *out)
++size_t appendEncode(size_t length, unsigned char *in, unsigned char *last, unsigned char *out)
+ {
+-	static char delta[1024];	/* bigger than we'll ever need */
++	static unsigned char delta[1024]; /* bigger than we'll ever need */
+ 	size_t result = 0;
+ 	
+ 	if(last)
