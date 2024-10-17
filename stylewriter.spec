@@ -4,7 +4,7 @@ Version:	0.9.9
 Release:	25
 License:	GPL
 Group:		System/Printing
-URL:		http://homepage.mac.com/monroe/styl/
+URL:		https://homepage.mac.com/monroe/styl/
 Source:		http://homepage.mac.com/monroe/styl/stylewriter.tar.gz
 Patch0:		stylewriter-gcc4.patch
 #BuildRequires:	netatalk-devel
